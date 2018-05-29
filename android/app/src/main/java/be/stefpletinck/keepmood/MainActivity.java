@@ -1,4 +1,4 @@
-package com.example.keepmood;
+package be.stefpletinck.keepmood;
 
 import android.os.Bundle;
 
