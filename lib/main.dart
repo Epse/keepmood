@@ -89,9 +89,9 @@ class MoodViewState extends State<MoodView> {
   }
 
   @override
-  void dispose() {
-    storage.close();
-    super.dispose();
+  void deactivate() async {
+    await storage.close();
+    super.deactivate();
   }
 }
 
