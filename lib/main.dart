@@ -64,6 +64,12 @@ class MoodViewState extends State<MoodView> {
     });
   }
 
+  void _deleteRecording(int id) async {
+    await storage.delete(id);
+    // TODO: optimize the shit out of this please
+    fillRecordingList();
+  }
+
   @override
   Widget build(BuildContext context) {
     Column column = new Column(
@@ -76,10 +82,16 @@ class MoodViewState extends State<MoodView> {
 
     if (_sentimentList != null) {
       for (var recording in _sentimentList.reversed) {
-        column.children.add(new MoodEvent(recording: recording));
+        column.children.add(new MoodEvent(recording: recording, onDelete: _deleteRecording,));
       }
     }
     return column;
+  }
+
+  @override
+  void dispose() {
+    storage.close();
+    super.dispose();
   }
 }
 
