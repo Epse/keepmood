@@ -73,6 +73,13 @@ class MoodStorage {
         where: "id = ?", whereArgs: [recording.id]);
   }
 
+  Future<int> delete(final int id) async {
+    if (database == null) {
+      await initDatabase();
+    }
+    return await database.delete(_table, where: "id = ?", whereArgs: [id]);
+  }
+
   Future close() async => database.close();
 }
 
