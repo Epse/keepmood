@@ -14,7 +14,7 @@ class MoodEvent extends StatelessWidget {
     return Card(
           child: Column(children: <Widget>[ListTile(
               title: Text(sentimentString(recording.sentiment)),
-              subtitle: Text(recording.time.toIso8601String())),
+              subtitle: Text(recording.comment)),
       new ButtonTheme.bar(
         child: new ButtonBar(
           children: <Widget>[

@@ -25,7 +25,7 @@ class MoodStorage {
     return openDatabase(await _localFile, version: 1,
         onCreate: (Database db, int version) async {
           await db.execute(
-              "CREATE TABLE $_table (id INTEGER PRIMARY KEY, sentiment TEXT, timestamp TEXT);");
+              "CREATE TABLE $_table (id INTEGER PRIMARY KEY, sentiment TEXT, comment TEXT, timestamp TEXT);");
         });
   }
 
@@ -42,7 +42,7 @@ class MoodStorage {
       await initDatabase();
     }
     List<Map> maps = await database.query(_table,
-        columns: ["id", "sentiment", "timestamp"],
+        columns: ["id", "sentiment", "comment", "timestamp"],
         where: "id = ?",
         whereArgs: [id]);
 
@@ -57,7 +57,7 @@ class MoodStorage {
       await initDatabase();
     }
     List<Map> maps =
-    await database.query(_table, columns: ["id", "sentiment", "timestamp"]);
+    await database.query(_table, columns: ["id", "sentiment", "comment", "timestamp"]);
     List<SentimentRecording> list = new List<SentimentRecording>();
     for (var map in maps) {
       list.add(new SentimentRecording.fromMap(map));

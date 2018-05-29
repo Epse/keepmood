@@ -5,13 +5,15 @@ class SentimentRecording {
   int id;
   final DateTime time;
   final Sentiment sentiment;
+  final String comment;
 
-  SentimentRecording(this.sentiment, this.time, [this.id]);
+  SentimentRecording(this.sentiment, this.time, [this.id, this.comment = ""]);
 
   SentimentRecording.fromMap(Map map)
       : id = map["id"],
         time = DateTime.parse(map["timestamp"]),
-        sentiment = parseSentiment(map["sentiment"]);
+        sentiment = parseSentiment(map["sentiment"]),
+        comment = map["comment"];
 
   Map toMap() {
     // Damn those type annotations.. You need them or it fails
@@ -21,6 +23,9 @@ class SentimentRecording {
     };
     if (id != null) {
       map["id"] = id;
+    }
+    if (comment != null) {
+      map["comment"] = comment;
     }
     return map;
   }
