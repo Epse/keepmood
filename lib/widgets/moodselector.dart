@@ -23,18 +23,26 @@ class MoodSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Card(
-        child: Container(
-            child: Column(
+        child: Column(
       children: <Widget>[
         ListTile(
-            title: Text("How do you feel?"),
-            subtitle: TextField(
-              controller: controller,
-              onChanged: _commentChanged,
-              decoration: new InputDecoration(
-                hintText: "Comment",
-              ),
-            )),
+          title: Text("How do you feel?"),
+          //subtitle: TextField(
+          //  controller: controller,
+          //  onChanged: _commentChanged,
+          //  decoration: new InputDecoration(
+          //    hintText: "Comment",
+          //  )),
+        ),
+        Container(
+          padding: new EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextField(
+          controller: controller,
+          onChanged: _commentChanged,
+          decoration: new InputDecoration(
+            hintText: "Comment",
+          ),
+        )),
         ButtonTheme.bar(
             child: ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
@@ -68,6 +76,6 @@ class MoodSelector extends StatelessWidget {
           ],
         )),
       ],
-    )));
+    ));
   }
 }
