@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'sentiment.dart';
-import 'moodselector.dart';
-import 'moodevent.dart';
+import 'widgets/moodselector.dart';
+import 'widgets/moodevent.dart';
 import 'moodstorage.dart';
-import 'moodchart.dart';
+import 'widgets/moodchart.dart';
 
 void main() => runApp(new KeepMood());
 
@@ -54,10 +54,9 @@ class MoodViewState extends State<MoodView> {
     fillRecordingList();
   }
 
-  void _newSentiment(Sentiment sentiment) async {
-    SentimentRecording recording =
-        new SentimentRecording(sentiment, new DateTime.now());
-    await storage.insert(recording);
+  void _newSentiment(SentimentRecording recording) async {
+    recording = await storage.insert(recording);
+    // TODO: This is not at all very optimised...
     var recordings = await storage.getAllRecordings();
     setState(() {
       _sentimentList = recordings;

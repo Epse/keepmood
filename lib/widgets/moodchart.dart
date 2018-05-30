@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-import 'sentiment.dart';
+import '../sentiment.dart';
 
 class MoodChart extends StatelessWidget {
   final List<charts.Series> seriesList;

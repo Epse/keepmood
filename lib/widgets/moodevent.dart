@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'sentiment.dart';
+import '../sentiment.dart';
 
 class MoodEvent extends StatelessWidget {
   MoodEvent({Key key, @required this.recording, @required this.onDelete})

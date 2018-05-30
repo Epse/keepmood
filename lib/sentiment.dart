@@ -7,7 +7,7 @@ class SentimentRecording {
   final Sentiment sentiment;
   final String comment;
 
-  SentimentRecording(this.sentiment, this.time, [this.id, this.comment = ""]);
+  SentimentRecording(this.sentiment, this.time, {this.id, this.comment = ""});
 
   SentimentRecording.fromMap(Map map)
       : id = map["id"],
