@@ -82,7 +82,8 @@ class MoodStorage {
 
   Future close() async {
     if (database != null) {
-      return await database.close();
+      await database.close();
+      return;
     }
     return;
   }
