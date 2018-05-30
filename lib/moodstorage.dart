@@ -80,6 +80,11 @@ class MoodStorage {
     return await database.delete(_table, where: "id = ?", whereArgs: [id]);
   }
 
-  Future close() async => database.close();
+  Future close() async {
+    if (database != null) {
+      return await database.close();
+    }
+    return;
+  }
 }
 

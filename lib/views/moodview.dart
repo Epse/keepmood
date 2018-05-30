@@ -6,6 +6,7 @@ import '../sentiment.dart';
 import '../widgets/moodselector.dart';
 import '../widgets/moodevent.dart';
 import '../moodstorage.dart';
+import 'chartview.dart';
 
 class MoodView extends StatefulWidget {
   @override
@@ -44,10 +45,6 @@ class MoodViewState extends State<MoodView> {
     fillRecordingList();
   }
 
-  void _onOpenCharts() {
-
-  }
-
   @override
   Widget build(BuildContext context) {
     Column column = new Column(
@@ -70,7 +67,9 @@ class MoodViewState extends State<MoodView> {
       appBar: new AppBar(
         title: new Text('KeepMood'),
         actions: <Widget>[
-          new IconButton(icon: Icon(Icons.show_chart), onPressed: _onOpenCharts)
+          new IconButton(icon: Icon(Icons.show_chart), onPressed: () {
+            Navigator.push(context, new MaterialPageRoute(builder: (context) => new ChartView()));
+          })
         ],
       ),
       body: ListView(
@@ -81,8 +80,8 @@ class MoodViewState extends State<MoodView> {
   }
 
   @override
-  void deactivate() async {
-    await storage.close();
-    super.deactivate();
+  void dispose() {
+    storage.close();
+    super.dispose();
   }
 }
