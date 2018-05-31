@@ -41,7 +41,8 @@ class MoodChart extends StatelessWidget {
       new charts.TickSpec(4, label: "Very happy")
     ];
     return new Column(children: <Widget>[
-      ListTile(title: Text("Today")),
+      ListTile(title: Text("Today"),),
+      // This should be inside the ListTile, but that failed horribly..
       Container(
           height: 200.0,
           padding: const EdgeInsets.all(16.0),
@@ -55,8 +56,9 @@ class MoodChart extends StatelessWidget {
             ),
             domainAxis: new charts.DateTimeAxisSpec(
                 showAxisLine: true, renderSpec: new charts.NoneRenderSpec()),
-          ))
-    ]);
+          )),
+      Divider(),
+    ],);
   }
 }
 
