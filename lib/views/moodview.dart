@@ -67,9 +67,15 @@ class MoodViewState extends State<MoodView> {
       appBar: new AppBar(
         title: new Text('KeepMood'),
         actions: <Widget>[
-          new IconButton(icon: Icon(Icons.show_chart), onPressed: () {
-            Navigator.push(context, new MaterialPageRoute(builder: (context) => new ChartView()));
-          })
+          new IconButton(
+              icon: Icon(Icons.show_chart),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) =>
+                            new ChartView(recordings: _sentimentList)));
+              })
         ],
       ),
       body: ListView(
