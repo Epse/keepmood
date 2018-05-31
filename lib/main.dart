@@ -11,7 +11,7 @@ class KeepMood extends StatelessWidget {
         title: 'KeepMood',
         home: new MoodView(),
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.purple,
         ));
   }
 }
