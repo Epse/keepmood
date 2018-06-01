@@ -3,13 +3,13 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../sentiment.dart';
 
-class MoodChart extends StatelessWidget {
+class DailyMoodChart extends StatelessWidget {
   final List<charts.Series<TimeSeriesSentiment, DateTime>> seriesList;
   final bool animate;
 
-  MoodChart(this.seriesList, this.animate);
+  DailyMoodChart(this.seriesList, this.animate);
 
-  factory MoodChart.fromSentimentRecordingList(List<SentimentRecording> inList,
+  factory DailyMoodChart.fromSentimentRecordingList(List<SentimentRecording> inList,
       [bool animate]) {
     List<TimeSeriesSentiment> data = new List<TimeSeriesSentiment>();
 
@@ -28,7 +28,7 @@ class MoodChart extends StatelessWidget {
           measureFn: (TimeSeriesSentiment s, _) => s.sentiment)
     ];
 
-    return new MoodChart(series, animate);
+    return new DailyMoodChart(series, animate);
   }
 
   @override

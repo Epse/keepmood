@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/moodchart.dart';
+import '../widgets/dailymoodchart.dart';
 import '../sentiment.dart';
 
 class ChartView extends StatelessWidget {
@@ -28,7 +28,7 @@ class ChartView extends StatelessWidget {
           title: Text("Charts"),
         ),
         body: ListView(children: <Widget>[
-          new MoodChart.fromSentimentRecordingList(today, false)
+          new DailyMoodChart.fromSentimentRecordingList(today, false)
         ]));
   }
 }
