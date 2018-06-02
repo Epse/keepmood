@@ -61,7 +61,7 @@ class MoodViewState extends State<MoodView> {
     if (_sentimentList != null) {
       DateTime lastTime = DateTime.now().add(new Duration(days: 2));
       for (var recording in _sentimentList.reversed) {
-        if (lastTime.difference(recording.time).inDays > 0) {
+        if (new DateTime(lastTime.year, lastTime.month, lastTime.day).difference(recording.time).inDays > 0) {
           column.children.add(new Text(formatter.format(recording.time)));
         }
         lastTime = recording.time;
@@ -82,7 +82,7 @@ class MoodViewState extends State<MoodView> {
                     context,
                     new MaterialPageRoute(
                         builder: (context) =>
-                            new ChartView(recordings: _sentimentList)));
+                            new ChartView(storage: storage,)));
               })
         ],
       ),
