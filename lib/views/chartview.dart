@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/dailymoodchart.dart';
+import '../widgets/monthlymoodchart.dart';
+import '../moodstorage.dart';
 import '../sentiment.dart';
 
-class ChartView extends StatelessWidget {
-  final List<SentimentRecording> recordings;
-  final List<SentimentRecording> today;
+class ChartView extends StatefulWidget {
+  final MoodStorage storage;
 
-  ChartView({Key key, @required this.recordings})
-      : today = _todayRecordings(recordings),
-        super(key: key);
+  ChartView({Key key, @required this.storage}) : super(key: key);
 
-  static List<SentimentRecording> _todayRecordings(List<SentimentRecording> x) {
-    List<SentimentRecording> y = new List<SentimentRecording>();
-    for (var r in x) {
-      if (new DateTime.now().difference(r.time).inDays < 1) {
-        y.add(r);
-      }
-    }
-    return y;
+  @override
+  createState() => new ChartViewState(storage);
+}
+
+class ChartViewState extends State<ChartView> {
+  final MoodStorage storage;
+  List<SentimentRecording> today;
+
+  void _getToday() async {
+    final temp =  await storage.getRecordingsSinceDay(new DateTime.now());
+    setState(() {
+      today = temp;
+    });
   }
+
+  @override
+  ChartViewState(this.storage) {
+    _getToday();
+  }
+
+  bool notNull(Object o) => o != null;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +39,8 @@ class ChartView extends StatelessWidget {
           title: Text("Charts"),
         ),
         body: ListView(children: <Widget>[
-          new DailyMoodChart.fromSentimentRecordingList(today, false)
-        ]));
+            (today != null) ? new DailyMoodChart.fromSentimentRecordingList(today, false) : null,
+          //new MonthlyMoodChart.fromSentimentRecordingList(recordings, false)
+        ].where(notNull).toList()));
   }
 }

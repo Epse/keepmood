@@ -65,6 +65,42 @@ class MoodStorage {
     return list;
   }
 
+  Future<List<SentimentRecording>> getRecordingsSinceMonth(DateTime start) async {
+    if (database == null) {
+      await initDatabase();
+    }
+    List<Map> maps =
+        await database.query(_table, columns: ["id", "sentiment", "comment", "timestamp"],
+        where: "timestamp > date(?, 'start of month')", whereArgs: [start.toIso8601String()]);
+
+    List<SentimentRecording> list = new List<SentimentRecording>();
+    if (maps == null) {
+      return list;
+    }
+    for (var map in maps) {
+      list.add(new SentimentRecording.fromMap(map));
+    }
+    return list;
+  }
+
+  Future<List<SentimentRecording>> getRecordingsSinceDay(DateTime start) async {
+    if (database == null) {
+      await initDatabase();
+    }
+    List<Map> maps =
+    await database.query(_table, columns: ["id", "sentiment", "comment", "timestamp"],
+        where: "timestamp > date(?, 'start of day')", whereArgs: [start.toIso8601String()]);
+
+    List<SentimentRecording> list = new List<SentimentRecording>();
+    if (maps == null) {
+      return list;
+    }
+    for (var map in maps) {
+      list.add(new SentimentRecording.fromMap(map));
+    }
+    return list;
+  }
+
   Future update(final SentimentRecording recording) async {
     if (database == null) {
       await initDatabase();
