@@ -33,6 +33,8 @@ class DailyMoodChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // FIXME: why the fuck does this show up on the emulator or on-device debugging (even release mode)
+    // but is not visible when installing an apk?
     final staticTicks = <charts.TickSpec<int>>[
       new charts.TickSpec(0, label: 'Very unhappy'),
       new charts.TickSpec(1, label: 'Unhappy'),
